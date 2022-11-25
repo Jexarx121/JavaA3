@@ -4,13 +4,18 @@ public class Colour {
     private float redColourValue;
     private float blueColourValue;
     private float greenColourValue;
-    private int min = 0;
-    private int max = 1;
+    private final int MIN = 0;
+    private final int MAX = 1;
+    private final int MAX_RGB = 255;
 
-    public Colour(float redValue, float blueValue, float greenValue) {
+    public Colour(float redValue, float greenValue, float blueValue) {
         this.setRedColourValue(redValue);
-        this.setBlueColourValue(blueValue);
         this.setGreenColourValue(greenValue);
+        this.setBlueColourValue(blueValue);
+    }
+
+    public Colour(int rgbValue) {
+        this.splitRGBValue(rgbValue);
     }
 
     public float getRedColourValue() {
@@ -18,8 +23,8 @@ public class Colour {
     }
 
     public void setRedColourValue(float redColourValue) {
-        if (!(min <= redColourValue && redColourValue <= max)) {
-            throw new IllegalArgumentException("Red value should be between 0 and 1.");
+        if (!(MIN <= redColourValue && redColourValue <= MAX)) {
+            throw new IllegalArgumentException("Red value should be between 0 and 1 or 255.");
         }
 
         this.redColourValue = redColourValue;
@@ -30,8 +35,8 @@ public class Colour {
     }
 
     public void setBlueColourValue(float blueColourValue) {
-        if (!(min <= blueColourValue && blueColourValue <= max)) {
-            throw new IllegalArgumentException("Blue value should be between 0 and 1.");
+        if (!(MIN <= blueColourValue && blueColourValue <= MAX)) {
+            throw new IllegalArgumentException("Blue value should be between 0 and 1 or 255.");
         }
 
         this.blueColourValue = blueColourValue;
@@ -42,19 +47,33 @@ public class Colour {
     }
 
     public void setGreenColourValue(float greenColourValue) {
-        if (!(min <= greenColourValue && greenColourValue <= max)) {
-            throw new IllegalArgumentException("Green value should be between 0 and 1.");
+        if (!(MIN <= greenColourValue && greenColourValue <= MAX)) {
+            throw new IllegalArgumentException("Green value should be between 0 and 1 or 255.");
         }
 
         this.greenColourValue = greenColourValue;
     }
 
+    private void splitRGBValue(int rgbValue) {
+        if (String.valueOf(rgbValue).length() != 9) {
+            throw new IllegalArgumentException("Length of rgb value should be 9 with 3 integers for each.");
+        }
+
+        float redColour = (rgbValue >> 16) & 0xFF;
+        float greenColour = (rgbValue >> 8) & 0xFF;
+        float blueColour = (rgbValue) & 0xFF;
+
+        this.setRedColourValue(redColour/MAX_RGB);
+        this.setGreenColourValue(greenColour/MAX_RGB);
+        this.setBlueColourValue(blueColour/MAX_RGB);
+    }
+
     public int getMin() {
-        return min;
+        return MIN;
     }
 
     public int getMax() {
-        return max;
+        return MAX;
     }
 
 
