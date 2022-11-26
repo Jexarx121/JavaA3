@@ -42,6 +42,16 @@ class ColourTest {
         Throwable exceptionLength = assertThrows(IllegalArgumentException.class, () ->
                 new Colour(1000000000));
 
-        assertEquals("RGB value should be between 0 and 16777215", exceptionLength.getMessage());
+        assertEquals("RGB value should be between 0 and 16777215.", exceptionLength.getMessage());
+    }
+
+    @Test
+    public void testEqualsColours() {
+        Colour colour = new Colour(16777215);
+        Colour colour2 = new Colour(12452);
+        Colour colour3 = new Colour(1, 1, 1);
+
+        assertTrue(colour.equals(colour3));
+        assertFalse(colour2.equals(colour));
     }
 }
