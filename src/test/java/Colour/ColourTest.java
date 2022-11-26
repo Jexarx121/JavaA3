@@ -31,7 +31,7 @@ class ColourTest {
 
     @Test
     public void testSingleParameterColour() {
-        Colour colour = new Colour(255255255);
+        Colour colour = new Colour(14561);
         assertTrue(colour.getMin() <= colour.getRedColourValue() && colour.getRedColourValue() <= colour.getMax());
         assertTrue(colour.getMin() <= colour.getBlueColourValue() && colour.getBlueColourValue() <= colour.getMax());
         assertTrue(colour.getMin() <= colour.getGreenColourValue() && colour.getGreenColourValue() <= colour.getMax());
@@ -40,8 +40,8 @@ class ColourTest {
     @Test
     public void testSingleParameterColourException() {
         Throwable exceptionLength = assertThrows(IllegalArgumentException.class, () ->
-                new Colour(25451));
+                new Colour(1000000000));
 
-        assertEquals("Length of rgb value should be 9 with 3 integers for each.", exceptionLength.getMessage());
+        assertEquals("RGB value should be between 0 and 16777215", exceptionLength.getMessage());
     }
 }
