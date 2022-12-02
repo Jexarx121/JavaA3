@@ -1,0 +1,57 @@
+commit d23208e11f1da01457875099514f5eaa142ff6b3
+Merge: ef47351 9eb231f
+Author: Jexarx121 <zjchen402@gmail.com>
+Date:   Sat Nov 26 13:37:40 2022 +0000
+
+    Merge remote-tracking branch 'origin/master'
+    
+    # Conflicts:
+    #       src/test/java/Colour/ColourTest.java
+
+commit ef4735146307ee457f65e0239ccc1150e3a2e58d
+Author: Jexarx121 <zjchen402@gmail.com>
+Date:   Sat Nov 26 12:58:29 2022 +0000
+
+    Refactored all tests to add in display names for each test. Also created a beforeEach method that creates colours objects, minimising some code.
+    
+    Lastly reduced the number of assertions and confirmed they all still work properly.
+
+commit 9eb231f7728ba48c7b1b41915bc81c63e91e9ab9
+Author: Jexarx121 <zjchen402@gmail.com>
+Date:   Sat Nov 26 12:58:29 2022 +0000
+
+    Implemented entire colours class with all methods and constructors. Added a new constructor in class and changed it in splitRGB method.
+    
+    Added equals test in test class.
+
+commit 7b0d4dc8c44e082e7ef7e41bc2fd45d95d07978c
+Author: Jexarx121 <zjchen402@gmail.com>
+Date:   Sat Nov 26 12:40:34 2022 +0000
+
+    Overrided equals method but found out that single constructor colour had flawed logic in it from trying to test the equals method.
+    
+    Initially had it accept octal numbers unknowingly but now properly accepts any integer values between 0 and 16777215.
+    
+    Changed constructor, constants and tests around it and works fine now.
+
+commit 05307de700b3b0e6225077114e46f89eb24e9c67
+Author: Jexarx121 <zjchen402@gmail.com>
+Date:   Fri Nov 25 22:39:58 2022 +0000
+
+    Added new constant in class, assuming that the rgb values would always be between 0 and 255. Also refactored min and max to be constants through uppercase.
+    
+    Added additional constructor of Colour class accepting rgb values with red in bits 16-23, green in bits 8-15 and blue in bits 0-7.
+    
+    Added new method splitRGB which splits the rgb values too. Added exception after using tests in file that the constructor would fail on rgb values not of length 9.
+    
+    Added 2 new tests in ColourTest to make sure new constructor was working okay.
+
+commit 4d854f52f62a0af5b49306bf468a47ba16686b1e
+Author: Jexarx121 <zjchen402@gmail.com>
+Date:   Fri Nov 25 15:17:56 2022 +0000
+
+    Added Colour class with 1 constructor to take in 3 appropriate rgb values in with proper encapsulation of class variables.
+    
+    Also added in test classes that test the constructor if they constructor accepts correct and incorrect values which both work.
+    
+    Also added maven dependency on junit5 in pom.xml.
